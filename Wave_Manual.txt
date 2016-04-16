@@ -1,0 +1,645 @@
+********* Wave Manual *********
+****November 2009 Twilighte*****
+
+******** Revision 1.0 *********
+
+           Contents
+
+  Page
+   1      Introduction & Overview
+   
+   1.1	   Booting WAVE
+   1.2	   Edit Menu
+   1.3	   File Menu
+   1.4	   List
+   1.5	   Patterns
+   1.6	   Effects
+   1.7	   Ornaments
+   1.8	   Samples
+   1.9	   Key Help
+   1.10	   Playing Music
+   
+   2	Editors
+   
+   2.1	   List Editor
+   2.2	   Pattern Editor
+   2.3	   Effect Editor
+   2.4	   Ornament Editor
+   2.5	   Sample Viewer
+   2.6	   Key Help Editor
+   
+   3	Utilities
+   
+   3.1	   Wave Compiler
+   
+   4	Reference
+   
+   4.1	   Default List Keys
+   4.2	   Default Pattern Keys
+   4.3	   Default Effect Keys
+   4.4	   Default Ornament Keys
+   4.5	   Default Sample Keys
+   4.6	   Pitch, Volume and Noise Elements
+   4.7       WAVE Samples
+   4.8	   Files in Zip
+   4.9       Files on System Disk
+   4.10	   Outstanding issues
+   
+   5	Demonstrations and Resource files
+   
+
+1 - Introduction & Overview
+WAVE is a 3 Channel Music Editor using the traditional Tracker Environment.
+WAVE features full control of Channels Volume, Note and Pitch plus EG support and one Channel 4 bit Samples
+SID may also be applied to a channel with Buzzer, Channel or Status Styles.
+
+All Code, Music and Graphics Twilighte09
+   
+1.1 - Booting WAVE
+WAVE is only available on an Oric Atmos with Disk Drive. It has not been tested on the real machine
+but is preferred on the Emulator. Music files may only be saved or loaded from Disk. Tape is not
+supported.
+
+The Wave disk contains all the program, data and all resources.
+
+Insert the disk and reboot the machine (F6 on Euphoric Emulator)
+Alternatively insert disk and type MENU followed by the return key
+
+The Menu is the central point of all WAVE resources.
+However at the time of release only 3 options are supported...
+
+In the Main Menu Option 1 will take you to the Music Editor.
+In the Compiler Menu only Options 4 and 5 are available.
+
+For information on Compiling the music turn to section 3.1
+For information on the Wave Music Editor read on...
+
+The WAVE display consists of two screens only.
+
+ * The main edit screen contains all the editors and will manage all editing
+ * The disk directory and disk operations
+ 
+The main edit screen consists of all editable areas of the music.
+From the top is the menu and below it is the List Editor.
+Below that is the Pattern Editor and below that three boxes.
+From the left is the Sample Viewer, Effect Editor and Ornament Editor.
+   
+1.2 - Edit Menu
+On bootup of WAVE the top left menu option (FILE) is highlighted.
+Their are two alternate menus. The Edit menu and the File menu. This is the Edit menu.
+
+From the Edit Menu you may navigate left/right with the cursor keys, select an option with either Return
+or Space or modify the tempo (can be done in the menu but not neccesary to be over the tempo option).
+
+The options are as follows
+
+FILE 	- Go to the FILE menu
+LIST 	- Enter the List Editor
+PATT 	- Enter the Pattern Editor
+EFFE 	- Enter the Effect Editor
+ORNA 	- Enter the Ornament Editor
+SAMP 	- Enter the Sample Viewer
+TM10 	- This reflects the Default music tempo and may be modified with - and = keys
+
+The last two options are the PLAY and STOP icons to play and stop the music. However in most editors
+the playing of the music can be started and stopped.
+
+By Default you can get to the Menu section by pressing ESC from any editor.
+
+1.3 - File Menu
+To enter the file menu select the FILE option in the top menu. Select again to return to the edit menu.
+
+The options are as follows
+
+EDIT   	- Go to the FILE menu
+LOAD   	- Load a tune or Sample Pack from disk
+SAVE   	- Save a tune to disk (The saved tune will contain all music plus all keys)
+UPDATE 	- Update Save the tune to disk (No need to enter filename again)
+DIR	- Display the disks directory
+NEW       - Erase all Music Memory
+MMENU     - Return to Main WAVE Menu
+
+And now some additional notes on some of those options
+LOAD
+WAVE files all have the extension .WVE regardless if Sample packs or Music files.
+There is no discrimination between the two types.
+
+Note: Before exiting to display the current directory the program will always ask for
+      confirmation in the message area.
+
+All Music and Samples will be stopped prior to displaying the Directory and loading a file.
+When entering the filename you MUST NOT include the extension.
+
+SAVE
+Save allows you to save a new tune to Disk. Each tune uses the same amount of disk space
+regardless the size of the tune being worked on. The program stores the music as a flat file
+which is always 26,500 Bytes or 105 Sectors.
+
+
+UPDATE
+Saves the current music being worked on to disk using either the default name ("DEFAULT")
+or the last filename saved to disk.
+During Update save the screen will momentarily vanish.
+
+NEW
+Selecting NEW will prompt you to confirm you wish to Erase the music currently in memory
+after which the program will erase all music including List data, Patterns, Effects and Ornaments.
+Samples will remain since their values can never be modified in the editors, only utilised.
+The Music Tempo will return to 10.
+
+However the filename currently being used will still remain so don't accidentally UPDATE save
+unless you intend to do so.
+
+MMENU
+Selecting MMENU(Main MENU) will prompt you to confirm you wish to Quit the application then will
+return you to the main WAVE menu.
+
+All music data will be lost so make sure you've saved it to Disc!
+
+
+1.4 - List
+Music in WAVE is constructed using a LIST which contains Patterns which contain the notes
+to play.
+
+The List is shown in the blue row just below the top menu.
+The List may contain up to 128 entries and a tune may be looped.
+
+
+1.5 - Patterns
+Each Pattern is a container for notes that are played.
+
+Most elements of the Oric Sound chip can be played with in WAVE and Samples may also
+be used.
+
+The primary 3 channels are shown in Yellow and Cyan.
+The yellow columns hold the notes which are spaced with rests inbetween.
+The play routine steps through each row at an even tempo set by the music tempo TMxx in the top menu.
+
+The far left green "S" column is the Sample column. Each row can potentially play a Sound sample aswell
+as chip channels.
+
+the Magenta "EGC" column is for setting the period and waveform for the Envelope Generator. The range is a
+little limited due to implementing the Envelope generator as a sound source rather than a volume envelope.
+The possible waveforms and Triangle or Sawtooth and the range of notes are from C-0 to about D-2.
+
+The green "N" column may hold a Noise level for the row. Noise is actually a seperate sound generator
+inside the Sound Chip but unfortunately is brough out on any one of the chip channels so they must
+have noise enabled before it is heard.
+
+The Yellow columns contain the Note or Rest. Notes range from C-0 to C-6 but may be taken further using
+Effects, Ornaments or Pitchbend.
+Notes always have an associated Volume (the first field in the Cyan column to the right). The range of
+volumes are limited to 4 levels. ie. 0,4,8 and 15.
+Rests may also have a zero volume to represent a Silence Rest. This is useful to silence a note before
+its effect or ornament has finished.
+
+The Cyan columns contains 5 fields.
+V  This is the volume as described previously
+E  This is the Effect field and is shown with hexadecimal values from 0 to E or None (-)
+    Up to 15 Effects are available. Each Effect can modify the Pitch and Volume of the Note.
+    Effects are also used for enabling or disabling Noise and the EG.
+O  This is the Ornament field and is shown with hexadecimal values from 0 to E or None (-)
+    Up to 15 Ornaments are available. Each Ornament modifies the note by up to 31 steps and in the
+    range of -128 to +127. Each entry is always relative to the original Pattern Note.
+CP This is the Command ID and Parameter. A Command can be applied to each Channel so up to 3 commands
+   can exist on each row.
+   Commands are shown as letters followed by the Parameter (P) field which always ranges 32 values shown
+   as extended hexadecimal format 0-V.
+    C - Apply Channel SID, Status SID or Turn off SID
+    	For Channel SID the Parameter specifies the EOR Value(0-F). The Patern Volume sets the first value
+    	For Status SID set the parameter to "S"
+    	To turn off SID set the parameter to "O"
+    Z - Apply Buzzer SID
+    	The parameter specifies the EOR Value(0-F). The Initial cycle is set by the Cycle Column
+    S - Apply Samples to this channel
+    	The Parameter is not currently used. Samples are always played at the Note Frequency
+    T - Set the current music Tempo
+    	The Parameter specifies the Tempo(0-31)
+    B - Apply Pitchbend to this channel
+    	The Parameter specifies the number of steps between semitones(0-7)
+    O - Trigger Out - Writes the value of P to the Trigger location to control external events
+    	The Parameter specifies the value to write to the Trigger Variable
+    - - -
+
+
+A note does not need an Effect or an Ornament to play. Infact a pretty decent tune can be had by not
+using them at all.
+
+1.6 - Effects
+An Effect is a sequence of up to 31 events that are applied to the Pattern note and optionally looped.
+Each entry can be one of 8 types and are as follows
+
+  0 Loop or End
+  1 Noise Off
+  2 EG Off
+  3 Tone Off
+  4 Tone On and Pitch Offset
+  5 Noise On and Noise Offset
+  6 EG On and EGPeriod Offset
+  7 Tone On and Volume Offset
+    If the volume overlaps (<0 or >15) then this ends the Effect
+
+The Offset is always -16 to +15
+For Noise, EG and Pitch the change is always relative to the original note.
+For volume the change is absolute(permanent).
+Up to 15 Effects can be defined
+
+By default a new note is always played with Tone on and Noise Off.
+
+1.7 - Ornaments
+An Ornament is a sequence of up to 31 Semitone Offsets that are applied to the Pattern Note
+Each Entry holds a range of -128 to +127.
+
+Ornaments may be used to simulate chords or percussion instruments such as drums
+
+1.8 - Samples
+WAVE supports one channel 10Khz 4Bit Samples. 8Kbytes are assigned to Samples and are internally
+stored in either the top or bottom 4 bits of each byte.
+The samples may be looped.
+
+A sample always plays on Channel C. Samples are best played without the Channels Noise or Tone interfering.
+To facilitate this a Note should be placed at the very start of Channel C with an Effect that disables
+the Tone (TONE OFF).
+
+1.9 - Key Help
+Every Editor is provided with a Help Screen (CTRL+H by default).
+The Help screens hold a description of all keys used in each Editor.
+They are referred to as the Help Editor or Key Editor since they also allow any key to be redefined by
+the user.
+
+All keys are stored with the music file that is saved to Disk.
+
+1.10 - Playing Music
+The area between the Sample Viewer and the Message row contains information about the tune currently
+playing.
+||| PR/LRW
+
+||| 3 Red Bars reflect the Volumes of each of the Chip channels from A to C.
+    These are shown in real time but at a lower resolution than the Volume channel due to space restrictions.
+    Each bar may be..
+    solid red 	- Tone and reflecting the Volume on the channel
+    Dithered Red	- Noise and reflecting the Volume on the channel
+    Character E	- EG has Channel
+    Character S	- Sample has Channel(which currently is limited to Channel C)
+    Character X	- Channel is disabled or Muted
+
+PR  To the right of the Bars is a 2 digit number which reflects the Current Pattern Row being played
+
+LRW To the right of that is the List index currently being played
+
+2 - Editors
+All Editors are displayed in the same static screen you see on bootup. So everything is immediately visible.
+
+
+2.1 - List Editor
+To enter the List editor Select it from the Top Menu or Press CTRL+L from any Editor.
+The List Editor will display a cursor on the current entry which is indicated by the Index in the row above.
+
+The List consists of a sequence of Patterns (from left to right) that are played in succession one after
+the other.
+At the end of the composition the List may be looped by specifying a Loop position. The Loop position is
+indicated with an L to the left of the Pattern number instead of a P.
+
+
+2.2 - Pattern Editor
+To enter the Pattern editor Select it from the Top Menu or Press CTRL+P from any Editor.
+
+
+
+2.3 - Effect Editor
+To enter the Effect editor Select it from the Top Menu or Press CTRL+E from any Editor.
+
+2.4 - Ornament Editor
+To enter the Ornament editor Select it from the Top Menu or Press CTRL+O from any Editor.
+
+2.5 - Sample Viewer
+To enter the Sample Viewer Select it from the Top Menu or Press CTRL+S from any Editor.
+
+2.6 - Key Editor
+All editors are provided roughly the same range of command keys and all share the same usual key.
+For example Copy, Cut and Paste commands are available in both the List, Pattern and Effect Editors
+and use the keys CTRL+C, CTRL+X and CTRL+V by default. Similarly highlighting takes the form of SHIFT
+plus a cursor key to highlight in that direction and like Windows CTRL+A will highlight everything.
+
+The Playing of the music also centres around the Return and Space Bar. Return in combination with
+Shift to play and Space Bar always to Stop.
+
+Switching between Editors 
+
+3.1 - Wave Compiler
+Any music produced(and saved) in the Music Editor is always 26.5K. This is because the Music Editor
+uses a flat-file to store all the music elements including the session preferences.
+A Compiler will extract only the music that was composed and convert it to a format that is much
+smaller (typically 80% smaller).
+The Compiler will then add a specially optimised player onto the end and either save the resultant file
+to Disc(Option 4) or Print just the music data to the local Printer (option 5).
+
+3.2 - Compiling BASIC TEXT IRQ Driver
+This will compile the tune to sit as far up in memory suitable for operation in a TEXT only environment.
+
+To compile a tune select Option 4 from the Compiler Menu. The disc directory will now show only WAVE
+files. Enter your tunes filename (DO NOT include the extension) then press Enter.
+The program will compile the tune and save it to a file with the same filename but the extension .CWF
+This file holds the compiled music data. The Compiler will then add the Player code to the end and
+save the final file to disc with the .COM extension.
+
+To load the compiled tune and player, simple load the .COM file.
+To Play the song always CALL #B000
+To Stop the song always CALL #B1C5
+
+In order to have the music resident in memory whilst you are using BASIC it it neccesary to set the
+top of BASIC memory using the HIMEM command (otherwise BASIC may corrupt or even crash the music).
+To find out what to set HIMEM to Load the music with the ,V switch at the end. This will return the
+Start and End address of the Compiled tune.
+Set HIMEM to 1 below the Start Address.
+
+For example LOAD"EXAMPLE1",V will return ADA1 B4FF 40 0000
+You would then set place HIMEM #ADA0 at the very start of your BASIC program.
+
+3.3 - Compiling and Printing an XA Compliant Music Block
+This option was added for those wishing to use music in Cross assembled Machine Code using the popular XA
+Compiler as provided in DBUGs fantastic OSDK package.
+The option will compile the tune then generate .byt statements (in rows of 16 bytes) to the printer file.
+
+However it is imperitive that the PRINTER IS SWITCHED ON during this operation otherwise the machine WILL
+crash.
+
+A countdown will be displayed in the top left indicating the progress of the printing.
+After completed and returning to the menu, turn off the Printer and collect the Printer file.
+
+At the time of release it was found the last data statement contains an error. Add $00 to the end.
+
+In the ZIP file (that WAVE is packaged in) you will find the xa source for the Player(Wave_Player.s).
+The Player must allign to a Page. Not only this but be aware that the actual allignment is required further
+down the source in the Effect section of the code so amendments made above must not upset the page
+allignment.
+
+However the Music data file collected from the printer file can be placed anywhere in memory.
+Just tell the player where the start of the music data is (in the MUSICBASEADDRESS constant).
+To play the music JSR InitMusic
+To Stop the music JSR TerminateMusic
+
+
+4 - Reference
+
+4.1 - Default Menu Keys
+ LEFT		Navigate Left
+ RIGHT		Navigate Right
+ SPACE		Select
+ RET		Select
+ CTRL+H		Help Key Editor
+ -        	Decrement Tempo
+ =		Increment Tempo
+
+4.2 - Default List Keys
+ LEFT 		Navigate Left
+ RIGHT 		Navigate Right
+ CTRL+H		Help 
+ CTRL+P		Switch to Pattern
+ CTRL+S		Switch to Sample
+ CTRL+E		Switch to Volseq
+ CTRL+O		Switch to Ornament
+ ESC		Switch to Menu
+ SHFT+LEFT	Highlight Left
+ SHFT+RIGHT	Highlight Right
+ CTRL+C		Copy
+ CTRL+V		Paste
+ J		Grab
+ K		Drop
+ L		Copy Last
+ N		Copy Next
+ =		Increment
+ -		Decrement
+ DEL		Delete
+ CTRL+I		Insert Gap
+ CTRL+D		Delete Gap
+ SHFT+L		Loop Here
+ SHFT+X		End Here
+ SHFT+RETURN	Play Pattern
+ RETURN		Play Music
+
+4.3 - Default Pattern Keys
+ LEFT 		Navigate Left
+ RIGHT 		Navigate Right
+ DOWN 		Navigate Down
+ UP 		Navigate Up
+ CTRL+H		Help 
+ CTRL+LEFT	Track Left
+ CTRL+RIGHT	Track Right
+ CTRL+UP		Page Up
+ CTRL+DOWN	Page Down
+ CTRL+-		Previous Pattern
+ CTRL+=		Next Pattern
+ CTRL+L		Switch to List
+ CTRL+S		Switch to Sample
+ CTRL+E		Switch to Volseq
+ CTRL+O		Switch to Ornament
+ ESC		Switch to Menu
+ SHFT+LEFT	Highlight Left
+ SHFT+RIGHT	Highlight Right
+ SHFT+DOWN	Highlight Down
+ SHFT+UP		Highlight Up
+ CTRL+A		Highlight All
+ CTRL+C		Copy
+ CTRL+X		Cut
+ CTRL+V		Paste
+ CTRL+M		Merge
+ J		Grab
+ K		Drop
+ L		Copy Last
+ N		Copy Next
+ =		Increment
+ -		Decrement
+ CTRL+I		Insert Gap
+ CTRL+D		Delete Gap
+ DEL		Delete
+ 0		Octave 0
+ 1		Octave 1
+ 2		Octave 2
+ 3		Octave 3
+ 4		Octave 4
+ 5		Octave 5
+ 6		Octave 6
+ C		Note C
+ D		Note D
+ E		Note E
+ F		Note F
+ G		Note G
+ A		Note A
+ B		Note B
+ CTRL+B		Bar
+ RETURN		Play Row
+ SHFT+RETURN	Play Pattern
+ CTRL+P		Play Music
+ M		Mute Track
+ SPACE		Turn Off Music
+
+4.6 - Default Sample Keys
+ UP		Navigate Up
+ DOWN		Navigate Down
+ CTRL+H		Help 
+ CTRL+L		Switch to List
+ CTRL+P		Switch to Pattern
+ CTRL+O		Switch to Ornament
+ CTRL+E		Switch to Effect
+ ESC		Switch to Menu
+ CTRL+U		Use
+ RET		Play
+ SPACE		Stop
+
+4.4 - Default Effect Keys
+ UP		Navigate Up
+ DOWN		Navigate Down
+ CTRL+H		Help 
+ CTRL+-		Previous Effect
+ CTRL+=		Next Effect
+ CTRL+U		Use
+ CTRL+L		Switch to List
+ CTRL+P		Switch to Pattern
+ CTRL+S		Switch to Sample
+ CTRL+O		Switch to Ornament
+ ESC		Switch to Menu
+ SHFT+N		Toggle Noise(Alternate between NOISE OFF and SET NOISE)
+ SHFT+E		Toggle EG(Alternate between EG OFF and SET EGPER)
+ SHFT+T		Tone Off
+ SHFT+P		Set Pitch
+ SHFT+V		Set Volume
+ SHFT+L		Loop Here
+ SHFT+X		Set End Loop
+ =		Increment
+ -		Decrement
+ SPACE		Turn Off Music
+ CTRL+I		Insert Gap
+ CTRL+D		Delete Gap
+ DEL		Delete
+ SHFT+UP		Highlight Up
+ SHFT+DOWN	Highlight Down
+ CTRL+C		Copy
+ CTRL+X		Cut
+ CTRL+V		Paste
+ J		Grab
+ K		Drop
+ L		Copy Last
+ N		Copy Next
+ RETURN		Play
+
+4.5 - Default Ornament Keys
+ UP		Navigate Up
+ DOWN		Navigate Down
+ CTRL+H		Help 
+ CTRL+-		Previous Ornament
+ CTRL+=		Next Ornament
+ CTRL+U		Use
+ CTRL+L		Switch to List
+ CTRL+P		Switch to Pattern
+ CTRL+S		Switch to Sample
+ CTRL+E		Switch to Effect
+ ESC		Switch to Menu
+ SHFT+L		Loop Here
+ =		Increment
+ -		Decrement
+
+ CTRL+I		Insert Gap
+ CTRL+D		Delete Gap
+ DEL		Delete
+ SHFT+X		End
+ SHFT+UP		Highlight Up
+ SHFT+DOWN	Highlight Down
+ CTRL+C		Copy
+ CTRL+X		Cut
+ CTRL+V		Paste
+ J		Grab
+ K		Drop
+ L		Copy Last
+ N		Copy Next
+ RETURN		Play
+ SPACE		Turn Off Music
+
+
+4.6 - Pitch, Volume and Noise Elements
+WAVE Pitch is calculated as follows
+(Pattern Note +/- Ornament) >> Pitch +/- Effect Pitch >> AY
+
+WAVE Volume (Samples always act on Volumes so avoid setting it during)
+Pattern Volume +/- Effect Volume >> AY
+
+WAVE Noise
+Pattern Noise +/- Effect Noise >> AY
+
+WAVE EGPeriod (Always 8 bit only)
+Pattern EG +/- Effect EG >> AY
+
+4.7 - WAVE Samples
+WAVE Samples are held in an 8K block of memory from $5672 to $76CC.
+Up to 7 Samples can be used.
+
+Each Sample is always played at 10Khz 4 Bit and may reside in the top or bottom nibble.
+However the End of the sample is indicated by a Zero in the Nibble so the resolution is reduced slightly.
+
+Samples are played concurrently to the Tracker Editor. So it is possible to play a looped 10Khz sample
+whilst browsing editors :P
+However all Samples and Music will stop as soon as any changes are made to the Music.
+
+4.8 - Files in Zip
+PRINTER.TXT	- Example Printout of Music Data (With correction at end)
+README.TXT	- Read me before proceeding
+Wave_Manual.txt	- This Manual (Which will also be converted to DF WIKI soon)
+Wave_Player.s	- Player xa source code
+WAVE100.DSK	- WAVE Music Editor and Compiler System Disk
+
+4.9 - Files on System Disk
+System files
+WAVE.MEM		- WAVE Music Editor Code
+WAVE.COM 		- WAVE Music Editor
+CPL.MEM		- Compiler Code
+CBTML.COM		- BASIC TEXT IRQ Driver
+CBHML.COM		- Experimental BASIC HIRES IRQ Driver
+CPAX.COM		- Compile&Print XA Program
+MENU.COM		- Wave Menu Program
+INLAY.MEM		- Wave Menu HIRES Inlay
+BTPLAYER.MEM	- Compiler Player for TEXT Mode
+BHPLAYER.MEM	- Experimental Compiler Player for HIRES Mode
+
+
+Sample Examples
+SAMPURC.WVE	- Purcussion Samples
+
+Music Examples
+EXAMPLE1.WVE
+EXAMPLE2.WVE
+EXAMPLE1.CWF
+EXAMPLE1.COM
+
+
+
+4.10 - Outstanding issues
+>> Mute Control
+The Mute key in the Pattern Editor does not do anything. There is no Mute facility
+>> Ornament Copy,Cut,Paste
+There is currently no facility in the Ornament Editor to highlight and copy in the Ornament Editor
+>> Trigger not shown
+When playing a Trigger Out event is not visibly shown
+>> Pattern Tempo is broken
+The Pattern Tempo command does not modify the Tempo
+>> Sample is not shown
+When playing a sample an S does not appear in the Play monitor area
+
+5 - Demonstrations and Resource files
+EXAMPLE1
+Demonstrates simple 3 channel harmony using some Effects and one Ornament towards the end.
+
+EXAMPLE2
+The first two Patterns concentrate on demonstrating the EG as a good Triangle Bass sound
+
+The third Pattern demonstrates using the Noise column to dynamically change the noise over the
+total duration of the pattern.
+
+The fourth pattern onwards demonstrates mixing EG, Chip and Samples into a composition.
+
+Please note these tunes are not masterpieces and are only present to demonstrate using the various
+WAVE musical elements.
+Also note that some Users may experience a slowdown after the pieces have finished playing. Press
+the Space Bar (Default key) to turn off all the music. This should restore the speed of operation
+to what it was before.
+
+Twilighte 7/11/2009 17:17
